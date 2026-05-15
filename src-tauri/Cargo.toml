@@ -1,0 +1,34 @@
+[package]
+name = "cockpit"
+version = "1.1.0"
+description = "Cockpit — tableau de bord desktop self-hosted pour entrepreneurs du numérique et de l'IA"
+authors = ["Liam DBAV"]
+license = "MIT"
+repository = "https://github.com/Liam-DBAV/cockpit"
+edition = "2021"
+rust-version = "1.77.2"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "cockpit_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.6.0", features = [] }
+
+[dependencies]
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+log = "0.4"
+tauri = { version = "2.11.0", features = [] }
+tauri-plugin-log = "2"
+# bundled = SQLite compilé dans le binaire, pas de dépendance au SQLite système
+rusqlite = { version = "0.32", features = ["bundled"] }
+# v4 = génération d'UUID aléatoires pour les IDs des entités
+uuid = { version = "1", features = ["v4"] }
+# std active Utc::now() pour horodater les créations et mises à jour
+chrono = { version = "0.4", features = ["std"] }
+# Client HTTP pour tester la connexion aux providers LLM depuis le backend Rust
+reqwest = { version = "0.12", features = ["json", "blocking", "stream"] }
+futures-util = "0.3"

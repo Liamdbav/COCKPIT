@@ -1,0 +1,1172 @@
+/* ── Badges de statut ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.badge-planned {
+  background: rgba(255,255,255,0.06);
+  color: var(--text-secondary);
+}
+
+.badge-active {
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+
+.badge-delivered {
+  background: rgba(255,255,255,0.03);
+  color: var(--text-muted);
+}
+
+/* ── Boutons ── */
+.btn {
+  padding: 7px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn:hover {
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+  background: var(--bg-hover);
+}
+
+.btn-primary {
+  background: var(--accent);
+  border-color: transparent;
+  color: #0d2318;
+}
+
+.btn-primary:hover {
+  background: #7fcf97;
+  border-color: transparent;
+  color: #0d2318;
+}
+
+.btn-danger {
+  color: var(--danger);
+  border-color: rgba(224,92,92,0.2);
+}
+
+.btn-danger:hover {
+  background: var(--danger-dim);
+  border-color: var(--danger);
+}
+
+.btn-sm { padding: 4px 10px; font-size: 12px; }
+
+.btn-back {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 4px 0;
+  font-family: var(--font-body);
+  transition: color var(--transition-fast);
+}
+
+.btn-back:hover { color: var(--text-secondary); }
+
+/* ── Inputs ── */
+.input {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 13px;
+  padding: 7px 11px;
+  width: 100%;
+  transition: border-color var(--transition-fast);
+  outline: none;
+}
+
+.input:focus {
+  border-color: var(--accent-border);
+  background: var(--bg-surface);
+}
+
+.input::placeholder { color: var(--text-muted); }
+
+textarea.input {
+  resize: vertical;
+  min-height: 80px;
+  line-height: 1.6;
+}
+
+/* ── Overlay (drawer + modal) ── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay.active {
+  display: flex;
+  animation: fadeIn var(--transition-fast) forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn { to { opacity: 1; } }
+
+/* ── Modal ── */
+.modal {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 32px 96px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03);
+  width: min(480px, 90vw);
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.modal-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.modal-body {
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.modal-footer {
+  padding: 14px 20px 18px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-secondary);
+}
+
+/* ── Drawer (panneau droit) ── */
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: min(520px, 90vw);
+  background: var(--bg-surface);
+  border-left: 1px solid var(--border);
+  box-shadow: -20px 0 60px rgba(0,0,0,0.35);
+  z-index: 110;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform var(--transition-std);
+  padding: 24px;
+}
+
+.drawer.active { transform: translateX(0); }
+
+/* ── Vue Clients — liste ── */
+.client-list-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+.client-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  margin-bottom: 5px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.client-row:hover {
+  border-color: var(--border);
+  background: var(--bg-hover);
+}
+
+.client-row-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.active-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.client-row-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.client-row-email {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.type-tag {
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.05);
+  color: var(--text-secondary);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.type-tag.type-company {
+  color: #a78bfa;
+  background: rgba(167, 139, 250, 0.12);
+}
+
+.type-tag.type-individual {
+  color: #c8956a;
+  background: rgba(200, 149, 106, 0.12);
+}
+
+/* ── Bouton épinglage dashboard ── */
+.pin-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  padding: 4px 6px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.pin-btn:hover { color: var(--text-secondary); background: var(--bg-hover); }
+.pin-btn.pinned { color: var(--accent); }
+.pin-btn.pinned:hover { color: var(--accent); }
+
+/* ── Vue Clients — détail ── */
+.detail-header {
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 22px;
+}
+
+.detail-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.detail-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.detail-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.detail-field { display: flex; flex-direction: column; gap: 6px; }
+
+.detail-field:last-child { grid-column: 1 / -1; }
+
+.detail-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.section-separator {
+  height: 1px;
+  background: var(--border-subtle);
+  margin: 4px 0 22px;
+}
+
+/* ── Projets dans la fiche client ── */
+.projects-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.projects-section-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.project-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  margin-bottom: 7px;
+}
+
+.project-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.project-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.project-card-meta { display: flex; gap: 14px; }
+
+.status-select {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-family: var(--font-body);
+  padding: 3px 8px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.status-select:focus { border-color: var(--accent-border); }
+
+/* ── Formulaires dans modal ── */
+.form-field { display: flex; flex-direction: column; gap: 6px; }
+
+.type-toggle { display: flex; gap: 6px; }
+
+.type-btn {
+  flex: 1;
+  padding: 7px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-family: var(--font-body);
+  font-weight: 400;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.type-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+.type-btn.active {
+  border-color: var(--accent-border);
+  color: var(--accent);
+  background: var(--accent-dim);
+  font-weight: 500;
+}
+
+/* ── Vue Archive Projets ── */
+.archive-toolbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.archive-toolbar .input { flex: 1; }
+.archive-toolbar .status-select { width: 160px; flex-shrink: 0; }
+.archive-toolbar .btn { flex-shrink: 0; }
+
+.project-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  margin-bottom: 5px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.project-row:hover {
+  border-color: var(--border);
+  background: var(--bg-hover);
+}
+
+.project-row.delivered { opacity: 0.52; }
+.project-row.delivered:hover { opacity: 0.8; }
+
+.project-row-left {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.project-row-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.project-row-client {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.project-row-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.project-row-entries {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.project-row-date {
+  font-size: 12px;
+  color: var(--text-muted);
+  min-width: 76px;
+  text-align: right;
+}
+
+/* ── Drawer contenu projet ── */
+.drawer-project-header {
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 20px;
+}
+
+.drawer-project-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+
+.drawer-project-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.drawer-client-name {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.drawer-status-select {
+  margin-left: auto;
+}
+
+.drawer-section-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.drawer-entries { display: flex; flex-direction: column; gap: 8px; }
+
+.drawer-empty {
+  font-size: 13px;
+  color: var(--text-muted);
+  padding: 8px 0;
+}
+
+.build-entry-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.build-entry-date {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.build-entry-field {
+  font-size: 13px;
+  color: var(--text-primary);
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.build-entry-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: block;
+}
+
+/* ── Actions sur une entrée de build ── */
+.build-entry-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+/* ── Formulaire dans le drawer ── */
+.entry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.entry-form-field { display: flex; flex-direction: column; gap: 6px; }
+
+.entry-form-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+/* ── Vue Paramètres ── */
+.settings-content {
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.settings-section {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.settings-section-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: background var(--transition-fast);
+}
+
+.settings-section-header:hover { background: var(--bg-hover); }
+
+.settings-section-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.settings-section-chevron {
+  font-size: 16px;
+  color: var(--text-muted);
+  transition: transform var(--transition-fast);
+  line-height: 1;
+}
+
+.settings-section.open .settings-section-chevron { transform: rotate(90deg); }
+
+.settings-section-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 250ms ease;
+  border-top: 0px solid var(--border-subtle);
+}
+
+.settings-section.open .settings-section-body {
+  max-height: 1200px;
+  border-top-width: 1px;
+}
+
+/* ── Formulaires dans les sections paramètres ── */
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px 18px;
+}
+
+.settings-form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input-action-row {
+  display: flex;
+  gap: 8px;
+}
+
+.input-action-row .input { flex: 1; }
+
+.llm-test-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.llm-test-result {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.llm-test-result.llm-test-ok  { color: var(--accent); }
+.llm-test-result.llm-test-err { color: var(--danger); }
+
+/* ── Réseaux sociaux ── */
+.social-sections {
+  display: flex;
+  flex-direction: column;
+}
+
+.social-sub {
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.social-sub:last-child { border-bottom: none; }
+
+.social-sub .settings-form {
+  padding: 10px 0 0;
+}
+
+.social-sub-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+/* ── Ligne de réglage ── */
+.settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  gap: 24px;
+}
+
+.settings-row-info { display: flex; flex-direction: column; gap: 3px; }
+
+.settings-row-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.settings-row-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ── Switch thème ── */
+.theme-switch {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.theme-switch input { display: none; }
+
+.theme-switch-track {
+  width: 38px;
+  height: 21px;
+  background: var(--bg-hover);
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  position: relative;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.theme-switch input:checked + .theme-switch-track {
+  background: var(--accent-dim);
+  border-color: var(--accent-border);
+}
+
+.theme-switch-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 13px;
+  height: 13px;
+  background: var(--text-muted);
+  border-radius: 50%;
+  transition: transform var(--transition-fast), background var(--transition-fast);
+}
+
+.theme-switch input:checked + .theme-switch-track .theme-switch-thumb {
+  transform: translateX(17px);
+  background: var(--accent);
+}
+
+/* ── Bloc terminal ── */
+.terminal-block {
+  margin: 0 18px 18px;
+  background: #000;
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.terminal-line {
+  color: var(--accent);
+  line-height: 1.6;
+  display: flex;
+  gap: 12px;
+}
+
+.terminal-line.dim { color: rgba(109,191,135,0.45); }
+
+.terminal-line.accent {
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.terminal-value { color: rgba(109,191,135,0.7); }
+
+/* ── Catégories Dashboard ── */
+.cat-section { margin-bottom: 20px; }
+
+.cat-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 4px 8px;
+  user-select: none;
+}
+
+.cat-name {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  flex: 1;
+}
+
+.cat-count {
+  font-size: 11px;
+  color: var(--text-muted);
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+  padding: 1px 7px;
+}
+
+/* Mode édition — header draggable */
+.cat-header[draggable="true"] { cursor: grab; }
+.cat-header[draggable="true"]:active { cursor: grabbing; }
+.cat-header.cat-drag-over {
+  background: var(--accent-dim);
+  border-radius: var(--radius-sm);
+}
+.cat-header.dragging { opacity: 0.35; }
+
+.cat-drag-handle {
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.cat-name-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 4px;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.cat-name-input:focus { border-bottom-color: var(--accent-border); }
+
+.cat-delete-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 11px;
+  padding: 3px 6px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  transition: color var(--transition-fast), background var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.cat-delete-btn:hover { color: var(--danger); background: var(--danger-dim); }
+
+.cat-delete-btn.cat-delete-armed {
+  color: var(--danger);
+  background: var(--danger-dim);
+  border: 1px solid rgba(224,92,92,0.3);
+  padding: 2px 8px;
+}
+
+.cat-order-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 12px;
+  padding: 2px 5px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  line-height: 1;
+  flex-shrink: 0;
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.cat-order-btn:hover:not(:disabled) { color: var(--text-secondary); background: var(--bg-hover); }
+.cat-order-btn:disabled { opacity: 0.2; cursor: default; }
+
+/* Zone de dépôt pour les projets */
+.cat-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 12px;
+  border-radius: var(--radius-md);
+  padding: 2px;
+  transition: background var(--transition-fast), outline-color var(--transition-fast);
+  outline: 1px solid transparent;
+}
+
+.cat-body.cat-drop-over {
+  background: var(--accent-dim);
+  outline-color: var(--accent-border);
+}
+
+.cat-empty {
+  font-size: 12px;
+  color: var(--text-muted);
+  padding: 8px 14px;
+}
+
+.project-row.dragging { opacity: 0.35; }
+
+/* Bouton "Nouvelle catégorie" */
+.cat-add-btn {
+  width: 100%;
+  margin-top: 6px;
+  border-style: dashed;
+  color: var(--text-muted);
+  justify-content: center;
+}
+
+.cat-add-btn:hover { color: var(--text-secondary); border-color: var(--border-strong); }
+
+/* Formulaire inline création catégorie */
+.cat-add-form {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.cat-add-form .input {
+  flex: 1;
+  height: 32px;
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+/* ── Chip catégorie sur la ligne projet ── */
+.cat-chip {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-subtle);
+  border-radius: 3px;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-family: var(--font-body);
+  padding: 2px 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.cat-chip:hover {
+  color: var(--text-secondary);
+  border-color: var(--border);
+  background: var(--bg-hover);
+}
+
+/* ── Popover assignation catégorie ── */
+.cat-popover {
+  position: fixed;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+  z-index: 200;
+  min-width: 160px;
+  overflow: hidden;
+  padding: 4px;
+}
+
+.cat-popover-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-family: var(--font-body);
+  padding: 7px 12px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.cat-popover-item:hover { background: var(--bg-hover); color: var(--text-primary); }
+.cat-popover-item.active { color: var(--accent); background: var(--accent-dim); }
+
+/* ── Skeleton loading ── */
+@keyframes shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position:  600px 0; }
+}
+
+.skeleton-row {
+  height: 52px;
+  background: linear-gradient(
+    90deg,
+    var(--bg-surface) 25%,
+    var(--bg-hover)   50%,
+    var(--bg-surface) 75%
+  );
+  background-size: 1200px 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: var(--radius-md);
+  margin-bottom: 5px;
+}
+
+/* ── Vue Marketing ── */
+.marketing-view {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.mkt-tabs {
+  display: flex;
+  gap: 2px;
+  padding: 0 32px;
+  border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+  background: var(--bg-primary);
+}
+
+.mkt-tab {
+  padding: 11px 16px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+  margin-bottom: -1px;
+}
+
+.mkt-tab:hover { color: var(--text-primary); }
+.mkt-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+.mkt-conversation {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mkt-bubble {
+  max-width: 78%;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  line-height: 1.65;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.mkt-bubble-user {
+  align-self: flex-end;
+  background: var(--bg-hover);
+  border: 1px solid var(--accent-border);
+  color: var(--text-primary);
+}
+
+.mkt-bubble-asst {
+  align-self: flex-start;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  outline: none;
+  cursor: text;
+}
+
+.mkt-bubble-asst:focus { border-color: var(--accent-border); }
+
+.mkt-bubble-error {
+  color: var(--danger);
+  border-color: rgba(224,92,92,0.3);
+  background: var(--danger-dim);
+}
+
+.mkt-copy-btn {
+  align-self: flex-start;
+  margin-top: -2px;
+}
+
+.mkt-input-bar {
+  flex-shrink: 0;
+  padding: 14px 32px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  background: var(--bg-primary);
+}
+
+.mkt-textarea {
+  flex: 1;
+  min-height: 42px;
+  max-height: 140px;
+  resize: none;
+  line-height: 1.55;
+}
+
+/* ── Focus visible ── */
+:focus-visible {
+  outline: 2px solid var(--accent-border);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+.client-row:focus-visible,
+.project-row:focus-visible {
+  outline: 2px solid var(--accent-border);
+  outline-offset: 1px;
+  border-color: var(--accent-border);
+}
+
+/* ── Toast d'erreur ── */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  padding: 12px 18px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 500;
+  max-width: 360px;
+  animation: toast-in 160ms ease;
+}
+
+.toast-error {
+  background: var(--danger-dim);
+  border: 1px solid rgba(224, 92, 92, 0.35);
+  color: var(--danger);
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Bouton armé (confirmation suppression) ── */
+.btn-danger.btn-danger-armed {
+  background: var(--danger-dim);
+  border-color: var(--danger);
+  color: var(--danger);
+}

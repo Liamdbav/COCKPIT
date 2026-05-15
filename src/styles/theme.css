@@ -1,0 +1,80 @@
+@font-face { font-family: 'Inter'; font-weight: 300; font-display: swap; src: url('../fonts/inter-300.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-weight: 400; font-display: swap; src: url('../fonts/inter-400.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-weight: 500; font-display: swap; src: url('../fonts/inter-500.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-weight: 600; font-display: swap; src: url('../fonts/inter-600.woff2') format('woff2'); }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; }
+
+:root {
+  /* Fonds */
+  --bg-primary:    #0b0d0b;
+  --bg-secondary:  #101310;
+  --bg-surface:    #161a16;
+  --bg-hover:      #1c221c;
+
+  /* Bordures */
+  --border-subtle: rgba(255,255,255,0.05);
+  --border:        rgba(255,255,255,0.09);
+  --border-strong: rgba(255,255,255,0.18);
+
+  /* Accent vert sauge */
+  --accent:        #6dbf87;
+  --accent-dim:    rgba(109,191,135,0.1);
+  --accent-border: rgba(109,191,135,0.3);
+
+  /* Texte */
+  --text-primary:   #f0f0ee;
+  --text-secondary: #8a9088;
+  --text-muted:     #505550;
+
+  /* Danger */
+  --danger:     #e05c5c;
+  --danger-dim: rgba(224,92,92,0.1);
+
+  /* Typographie */
+  --font-body:    'Inter', system-ui, sans-serif;
+  --font-display: 'Inter', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Transitions */
+  --transition-fast: 120ms ease;
+  --transition-std:  220ms ease;
+
+  /* Rayons */
+  --radius-sm: 5px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.09); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.16); }
+
+/* ── Surcharge Light mode ── */
+html.theme-light {
+  --bg-primary:    #f0f0e8;
+  --bg-secondary:  #e8e8e0;
+  --bg-surface:    #eaeae2;
+  --bg-hover:      #dcdcd4;
+
+  --border-subtle: rgba(0,0,0,0.06);
+  --border:        rgba(0,0,0,0.12);
+  --border-strong: rgba(0,0,0,0.22);
+
+  --text-primary:   #1a1a2a;
+  --text-secondary: #666670;
+  --text-muted:     #999993;
+}
+
+html.theme-light ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); }
+html.theme-light ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.25); }

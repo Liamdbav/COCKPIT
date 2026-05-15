@@ -1,0 +1,34 @@
+# Rust / Cargo
+src-tauri/target/
+
+# Tauri
+src-tauri/WixTools/
+src-tauri/gen/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Éditeurs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Distribution
+dist/
+
+# Base de données runtime (contient la clé API LLM en clair)
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+
+# Variables d'environnement locales
+.env
+.env.*
+
+# Rapports d'audit internes — ne pas publier
+AUDIT_REPORT.md
