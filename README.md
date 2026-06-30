@@ -141,6 +141,4 @@ cargo tauri build
 
 Fait avec soin par **Liam** — Licence MIT — voir [LICENSE](LICENSE)
 
-[![Follow on X](https://img.shields.io/badge/Follow-%40Liamdbav-000000?style=flat-square&logo=x&logoColor=white)](https://x.com/Liamdbav)
-
 </div>
